@@ -1,4 +1,4 @@
-package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n03.exception;
+package cat.itacademy.barcelonactiva.lopez.pedros04.t02.n03.exception;
 
 public class FruitEmptyException extends RuntimeException {
 
