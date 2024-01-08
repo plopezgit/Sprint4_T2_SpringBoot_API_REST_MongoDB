@@ -64,7 +64,7 @@ public class FruitController {
 		
 		return ResponseEntity.ok()
 				.header("Fruit state", "Fruit: " + id + " deleted")
-				.body("The fruit has been deleted.");
+				.body("The fruit " + id + " has been deleted.");
 	
 	}
 	
