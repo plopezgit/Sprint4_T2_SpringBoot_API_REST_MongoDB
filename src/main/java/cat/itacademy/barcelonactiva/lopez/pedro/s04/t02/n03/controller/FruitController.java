@@ -59,13 +59,12 @@ public class FruitController {
 	}
 	
 	@DeleteMapping ("{id}")
-	public ResponseEntity<HashMap<String, Boolean>> deleteFruit (@PathVariable int id) {
+	public ResponseEntity<String> deleteFruit (@PathVariable int id) {
 		fruitService.deleteFruit(id);
 		
-		HashMap<String, Boolean> fruitDeletedState =  new HashMap<String, Boolean>();
-		fruitDeletedState.put("Deleted", true);
-		
-		return ResponseEntity.ok(fruitDeletedState);
+		return ResponseEntity.ok()
+				.header("Fruit state", "Fruit: " + id + " deleted")
+				.body("The fruit has been deleted.");
 	
 	}
 	
