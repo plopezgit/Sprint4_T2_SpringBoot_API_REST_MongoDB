@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,13 +43,18 @@ public class FruitController {
 	
 	@PutMapping("{id}")
 	public ResponseEntity<Fruit> updateFruit (@PathVariable int id, @RequestBody Fruit fruit) {
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.add("State", "Fruit ID: " + id + " actualizado.");
+		
 		Fruit thisFruit = fruitService.getOneFruitById(id);
 		thisFruit.setName(fruit.getName());
 		thisFruit.setKilos(fruit.getKilos());
 		
 		Fruit updatedFruit = fruitService.createFruit(thisFruit);
 		
-		return new ResponseEntity<>(updatedFruit, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(updatedFruit, headers, HttpStatus.ACCEPTED);
 		
 	}
 	
@@ -65,6 +71,7 @@ public class FruitController {
 	
 	@GetMapping ("{id}")
 	public ResponseEntity<Fruit> getOneFruitByID (@PathVariable int id) {
+		
 		Fruit thisFruit = fruitService.getOneFruitById(id);
 		return ResponseEntity.ok(thisFruit);
 	}
